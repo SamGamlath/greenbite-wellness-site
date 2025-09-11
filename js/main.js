@@ -22,3 +22,24 @@ document.getElementById('newsletter-form').addEventListener('submit', (e) => {
         alert('Invalid email');
     }
 });
+
+// Hero quote rotator
+const quotes = ['Eat well, live well!', 'Move your body, feel alive!', 'Mindfulness every day!', 'Healthy habits, happy life!'];
+let quoteIndex = 0;
+setInterval(() => {
+    document.getElementById('hero-quote').textContent = quotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+}, 5000);
+
+// Daily tip
+const tips = ['Drink 8 glasses of water.', 'Eat 5 servings of veggies.', 'Sleep 7-8 hours.', 'Walk 10,000 steps.'];
+const today = new Date().getDay();
+document.getElementById('daily-tip').textContent = tips[today % tips.length];
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+});
+observer.observe(document.getElementById('daily-tip'));

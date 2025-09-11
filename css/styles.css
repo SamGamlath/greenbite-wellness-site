@@ -21,3 +21,8 @@ footer button:hover { background: #1976D2; transition: background 0.3s; }
     .nav-links.active { display: flex; }
     .hamburger { display: block; }
 }
+.hero { background: url('assets/images/hero1.jpg') center/cover no-repeat; height: 50vh; display: flex; justify-content: center; align-items: center; }
+.hero h1 { font-size: 2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.tips { text-align: center; padding: 2rem; }
+.tips p { font-size: 1.2rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+.tips p.visible { opacity: 1; transform: translateY(0); }
