@@ -14,7 +14,29 @@
             <div class="hamburger">☰</div>
         </nav>
     </header>
-    <main><!-- Page content goes here --></main>
+    
+    <main>
+        <section class="mindfulness">
+            <h2>Mindfulness</h2>
+            <div class="breathing">
+                <div id="breath-circle"></div>
+                <p id="breath-text">Inhale...</p>
+            </div>
+            <div class="timer">
+                <input type="number" id="timer-minutes" placeholder="Minutes" min="1">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="resetTimer()">Reset</button>
+                <p>Time: <span id="timer-display">0:00</span></p>
+            </div>
+            <div class="sounds">
+                <button onclick="toggleSound('rain')">Rain</button>
+                <button onclick="toggleSound('ocean')">Ocean</button>
+            </div>
+            <p>Sessions completed: <span id="session-count">0</span></p>
+        </section>
+    </main>
+    <script src="js/mindfulness.js"></script>
+
     <footer>
         <div class="footer-links">
             <a href="index.html">Home</a> | <a href="contact.html">Contact</a>
