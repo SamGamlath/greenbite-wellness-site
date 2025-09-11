@@ -1,0 +1,53 @@
+<body>
+    <header>
+        <title>Contact Us</title>
+        <nav>
+            <div class="logo">GreenBite</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="calorie.html">Calorie Calculator</a></li>
+                <li><a href="workouts.html">Workouts</a></li>
+                <li><a href="mindfulness.html">Mindfulness</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+    <main>
+        <section class="workouts">
+            <h2>Workout Generator</h2>
+            <form id="workout-form">
+                <label>Body Part: 
+                    <select id="body-part">
+                        <option value="">All</option>
+                        <option value="Arms">Arms</option>
+                        <option value="Legs">Legs</option>
+                        <option value="Full Body">Full Body</option>
+                    </select>
+                </label>
+                <label>Equipment: 
+                    <select id="equipment">
+                        <option value="">All</option>
+                        <option value="None">None</option>
+                        <option value="Dumbbells">Dumbbells</option>
+                    </select>
+                </label>
+                <button type="submit">Generate</button>
+            </form>
+            <div id="workout-plan"></div>
+        </section>
+    </main>
+    <script src="js/workouts.js"></script>
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a> | <a href="contact.html">Contact</a>
+        </div>
+        <form id="newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Subscribe to newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+</body>

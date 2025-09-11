@@ -43,3 +43,9 @@ footer button:hover { background: #1976D2; transition: background 0.3s; }
 .calculator button:hover { background: #1976D2; }
 #results { margin-top: 2rem; text-align: center; }
 progress { width: 100%; }
+.workouts form { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.workouts select, .workouts button { padding: 0.5rem; }
+.workout-item { background: white; padding: 1rem; margin: 0.5rem 0; }
+.workout-item button { background: #2196F3; color: white; border: none; padding: 0.5rem; }
+.workout-item button:hover { background: #1976D2; }
+.timer { display: inline-block; width: 50px; }
