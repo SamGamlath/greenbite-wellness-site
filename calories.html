@@ -1,0 +1,63 @@
+<body>
+    <header>
+        <title>Calories</title>
+        <nav>
+            <div class="logo">GreenBite</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="calorie.html">Calorie Calculator</a></li>
+                <li><a href="workouts.html">Workouts</a></li>
+                <li><a href="mindfulness.html">Mindfulness</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+    <main>
+        <section class="calculator">
+            <h2>Calorie & Nutrition Calculator</h2>
+            <form id="calc-form">
+                <label>Age (years): <input type="number" id="age" required></label>
+                <label>Gender: 
+                    <select id="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </label>
+                <label>Height (cm): <input type="number" id="height" required></label>
+                <label>Weight (kg): <input type="number" id="weight" required></label>
+                <label>Activity Level: 
+                    <select id="activity" required>
+                        <option value="1.2">Sedentary</option>
+                        <option value="1.375">Lightly active</option>
+                        <option value="1.55">Moderately active</option>
+                        <option value="1.725">Very active</option>
+                        <option value="1.9">Super active</option>
+                    </select>
+                </label>
+                <button type="submit">Calculate</button>
+            </form>
+            <div id="results" style="display: none;">
+                <h3>Results</h3>
+                <p>BMR: <span id="bmr"></span> kcal</p>
+                <p>TDEE: <span id="tdee"></span> kcal</p>
+                <p>Carbs: <span id="carbs"></span>g <progress id="carbs-bar" max="100" value="50"></progress></p>
+                <p>Protein: <span id="protein"></span>g <progress id="protein-bar" max="100" value="20"></progress></p>
+                <p>Fat: <span id="fat"></span>g <progress id="fat-bar" max="100" value="30"></progress></p>
+            </div>
+        </section>
+    </main>
+    <script src="js/calculator.js"></script>
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a> | <a href="contact.html">Contact</a>
+        </div>
+        <form id="newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Subscribe to newsletter" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+</body>

@@ -35,3 +35,11 @@ footer button:hover { background: #1976D2; transition: background 0.3s; }
 .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
 .modal-content { background: white; margin: 10% auto; padding: 2rem; width: 80%; max-width: 500px; }
 .close { float: right; cursor: pointer; font-size: 1.5rem; }
+
+.calculator form { display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: auto; }
+.calculator label { display: flex; justify-content: space-between; }
+.calculator input, .calculator select, .calculator button { padding: 0.5rem; }
+.calculator button { background: #2196F3; color: white; border: none; }
+.calculator button:hover { background: #1976D2; }
+#results { margin-top: 2rem; text-align: center; }
+progress { width: 100%; }
