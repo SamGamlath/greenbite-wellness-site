@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenBite - Contact</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/contact.css">
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
@@ -31,7 +30,7 @@
     <main>
         <section class="contact reveal">
             <h2>Contact Us</h2>
-            <form id="contact-form" class="reveal">
+            <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -45,8 +44,12 @@
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
                 <button type="submit">Submit</button>
-                <p id="form-feedback" aria-live="polite"></p>
             </form>
+            <div id="form-feedback" aria-live="polite"></div>
+            <div class="submission-history" id="submission-history" style="display: none;">
+                <h3>Previous Submissions</h3>
+                <ul id="history-list"></ul>
+            </div>
         </section>
     </main>
     <footer>
