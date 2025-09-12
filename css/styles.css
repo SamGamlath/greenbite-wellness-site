@@ -575,6 +575,7 @@ footer button:hover {
 }
 
 
+
 .mindfulness {
     max-width: 600px;
     margin: auto;
@@ -598,10 +599,9 @@ footer button:hover {
 }
 .timer-controls {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 2rem;
 }
 .timer-controls label {
     font-size: 1rem;
@@ -612,7 +612,6 @@ footer button:hover {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
-    width: 100px;
 }
 .timer-controls button {
     padding: 0.75rem;
@@ -634,18 +633,21 @@ footer button:hover {
 .breathing-circle {
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, #4CAF50 0%, #81C784 70%, transparent 100%);
+    background: #4CAF50;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem auto;
-    animation: breathe 8s ease-in-out infinite;
+    transition: transform 4s ease-in-out;
+}
+.breathing-circle.breathe-active {
+    animation: breathe 4s ease-in-out infinite;
 }
 .breathing-circle p {
     font-size: 2rem;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    font-family: 'Roboto', sans-serif;
 }
 @keyframes breathe {
     0% { transform: scale(1); }
@@ -677,15 +679,15 @@ footer button:hover {
     .mindfulness {
         padding: 1rem;
     }
-    .timer-controls {
-        flex-direction: column;
-        align-items: center;
-    }
-    .timer-controls input {
+    .timer-controls input, .timer-controls button {
         width: 100%;
     }
     .breathing-circle {
         width: 150px;
         height: 150px;
     }
+    .breathing-circle p {
+        font-size: 1.5rem;
+    }
 }
+
