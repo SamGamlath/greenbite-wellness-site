@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenBite - </title>
+    <title>GreenBite - Calorie Calculator</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <title>Calories</title>
         <nav>
-            <div class="logo">GreenBite</div>
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="GreenBite Apple Logo" width="150" height="50">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="recipes.html">Recipes</a></li>
@@ -26,49 +28,72 @@
         </nav>
     </header>
     <main>
-        <section class="calculator">
-            <h2>Calorie & Nutrition Calculator</h2>
-            <form id="calc-form">
-                <label>Age (years): <input type="number" id="age" required></label>
-                <label>Gender: 
-                    <select id="gender" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </label>
-                <label>Height (cm): <input type="number" id="height" required></label>
-                <label>Weight (kg): <input type="number" id="weight" required></label>
-                <label>Activity Level: 
-                    <select id="activity" required>
-                        <option value="1.2">Sedentary</option>
-                        <option value="1.375">Lightly active</option>
-                        <option value="1.55">Moderately active</option>
-                        <option value="1.725">Very active</option>
-                        <option value="1.9">Super active</option>
-                    </select>
-                </label>
+        <section class="calculator reveal">
+            <h2>Calorie Calculator</h2>
+            <form id="calorie-form">
+                <label for="age">Age (years):</label>
+                <input type="number" id="age" min="1" max="120" required>
+                
+                <label for="gender">Gender:</label>
+                <select id="gender" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" min="1" step="0.1" required>
+                
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" min="1" step="0.1" required>
+                
+                <label for="activity">Activity Level:</label>
+                <select id="activity" required>
+                    <option value="" disabled selected>Select activity level</option>
+                    <option value="1.2">Sedentary (little or no exercise)</option>
+                    <option value="1.375">Light (exercise 1-3 times/week)</option>
+                    <option value="1.55">Moderate (exercise 3-5 times/week)</option>
+                    <option value="1.725">Active (exercise 6-7 times/week)</option>
+                    <option value="1.9">Very Active (hard exercise daily)</option>
+                </select>
+                
                 <button type="submit">Calculate</button>
             </form>
-            <div id="results" style="display: none;">
-                <h3>Results</h3>
-                <p>BMR: <span id="bmr"></span> kcal</p>
-                <p>TDEE: <span id="tdee"></span> kcal</p>
-                <p>Carbs: <span id="carbs"></span>g <progress id="carbs-bar" max="100" value="50"></progress></p>
-                <p>Protein: <span id="protein"></span>g <progress id="protein-bar" max="100" value="20"></progress></p>
-                <p>Fat: <span id="fat"></span>g <progress id="fat-bar" max="100" value="30"></progress></p>
+            <div class="results" id="results" style="display: none;">
+                <h3>Your Results</h3>
+                <p>BMR: <span id="bmr"></span> kcal/day</p>
+                <div class="progress-bar">
+                    <label>BMR</label>
+                    <div class="bar"><div id="bmr-bar" style="width: 0;"></div></div>
+                </div>
+                <p>TDEE: <span id="tdee"></span> kcal/day</p>
+                <div class="progress-bar">
+                    <label>TDEE</label>
+                    <div class="bar"><div id="tdee-bar" style="width: 0;"></div></div>
+                </div>
             </div>
         </section>
     </main>
-    <script src="js/calculator.js"></script>
     <footer>
-        <div class="footer-links">
-            <a href="index.html">Home</a> | <a href="contact.html">Contact</a>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a> | <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://x.com" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <form id="newsletter-form" class="reveal">
+                <label for="newsletter-email" class="sr-only">Email for newsletter</label>
+                <input type="email" id="newsletter-email" placeholder="Subscribe to our newsletter" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="footer-credit">© 2025 GreenBite. All rights reserved.</p>
         </div>
-        <form id="newsletter-form">
-            <input type="email" id="newsletter-email" placeholder="Subscribe to newsletter" required>
-            <button type="submit">Subscribe</button>
-        </form>
     </footer>
     <script src="js/main.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/recipes.js"></script>
+    <script src="js/calorie.js"></script>
 </body>
+</html>
