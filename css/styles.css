@@ -573,3 +573,119 @@ footer button:hover {
         width: 100%;
     }
 }
+
+
+.mindfulness {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.mindfulness.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.mindfulness h2 {
+    font-family: 'Open Sans', sans-serif;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.timer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.timer-controls label {
+    font-size: 1rem;
+    color: #333;
+}
+.timer-controls input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100px;
+}
+.timer-controls button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #4CAF50;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.timer-controls button:hover {
+    background: #388E3C;
+    transform: scale(1.05);
+}
+.timer-controls button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #4CAF50 0%, #81C784 70%, transparent 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    animation: breathe 8s ease-in-out infinite;
+}
+.breathing-circle p {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+@keyframes breathe {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+.session-history {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.session-history h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+.session-history ul {
+    list-style: none;
+    padding: 0;
+}
+.session-history li {
+    background: #f9f9f9;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+}
+@media (max-width: 768px) {
+    .mindfulness {
+        padding: 1rem;
+    }
+    .timer-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    .timer-controls input {
+        width: 100%;
+    }
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+}
