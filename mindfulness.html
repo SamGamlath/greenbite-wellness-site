@@ -30,9 +30,9 @@
     </header>
     <main>
         <section class="mindfulness reveal">
-            <h2>Mindfulness Meditation</h2>
+            <h2>Mindfulness Meditation</h2><br>
             <div class="breathing">
-                <div id="breath-circle"></div>
+                <div id="breath-circle"></div><br>
                 <p id="breath-text">Inhale...</p>
             </div>
             <div class="timer-controls">
@@ -48,6 +48,13 @@
             </div>
             <div class="timer">
                 <p id="timer-display" aria-live="polite">05:00</p>
+            </div>
+            <div class="sounds">
+                <h3>Calming Sounds</h3>
+                <div class="sound-buttons">
+                    <button id="rain-sound">Rain (Off)</button>
+                    <button id="ocean-sound">Ocean (Off)</button>
+                </div>
             </div>
             <div class="session-history" id="session-history" style="display: none;">
                 <h3>Completed Sessions</h3>
@@ -72,6 +79,8 @@
             <p class="footer-credit">© 2025 GreenBite. All rights reserved.</p>
         </div>
     </footer>
+    <audio id="rain-sound-audio" loop src="assets/sounds/rain.mp3"></audio>
+    <audio id="ocean-sound-audio" loop src="assets/sounds/ocean.mp3"></audio>
     <script src="js/main.js"></script>
     <script src="js/mindfulness.js"></script>
 </body>

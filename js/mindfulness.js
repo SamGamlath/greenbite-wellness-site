@@ -10,6 +10,32 @@ function formatTime(seconds) {
     return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
+function toggleSound(soundId) {
+    console.log(`${soundId} button clicked. Toggling sound.`);
+    const button = document.getElementById(soundId);
+    const audio = document.getElementById(`${soundId}-audio`);
+    if (!button || !audio) {
+        console.error(`Sound elements not found for ${soundId}:`, { button, audio });
+        alert(`Error: ${soundId.replace('-sound', '')} sound not available. Check file path.`);
+        return;
+    }
+    if (audio.paused) {
+        audio.play().then(() => {
+            button.classList.add('active');
+            button.textContent = `${soundId.replace('-sound', '').replace(/^\w/, c => c.toUpperCase())} (On)`;
+            console.log(`${soundId} started playing.`);
+        }).catch(e => {
+            console.error(`Error playing ${soundId}:`, e);
+            alert(`Failed to play ${soundId.replace('-sound', '')} sound. Try again.`);
+        });
+    } else {
+        audio.pause();
+        button.classList.remove('active');
+        button.textContent = `${soundId.replace('-sound', '').replace(/^\w/, c => c.toUpperCase())} (Off)`;
+        console.log(`${soundId} paused.`);
+    }
+}
+
 function startOrResumeTimer(duration) {
     console.log(`Start/Resume button clicked. ${isPaused ? 'Resuming' : 'Starting'} timer with duration: ${duration} minutes. Remaining time: ${timeLeft} seconds`);
     clearInterval(timerInterval);
@@ -26,7 +52,7 @@ function startOrResumeTimer(duration) {
     const togglePauseBtn = document.getElementById('toggle-pause');
     const startBtn = document.getElementById('start-timer');
     if (!timerDisplay || !breathCircle || !breathText || !togglePauseBtn || !startBtn) {
-        console.error('Timer elements not found. Check DOM IDs.');
+        console.error('Timer elements not found:', { timerDisplay, breathCircle, breathText, togglePauseBtn, startBtn });
         alert('Error: Timer components missing. Please refresh the page.');
         return;
     }
@@ -54,6 +80,17 @@ function startOrResumeTimer(duration) {
             isRunning = false;
             startBtn.disabled = false;
             togglePauseBtn.disabled = true;
+            // Stop all sounds on completion
+            ['rain-sound', 'ocean-sound'].forEach(soundId => {
+                const audio = document.getElementById(`${soundId}-audio`);
+                const button = document.getElementById(soundId);
+                if (audio && !audio.paused) {
+                    audio.pause();
+                    button.classList.remove('active');
+                    button.textContent = `${soundId.replace('-sound', '').replace(/^\w/, c => c.toUpperCase())} (Off)`;
+                    console.log(`${soundId} paused on completion.`);
+                }
+            });
             try {
                 saveToLocal('meditationSessions', { duration, timestamp: new Date().toISOString() });
                 console.log('Session completed and saved.');
@@ -110,6 +147,17 @@ function resetTimer() {
     startBtn.disabled = false;
     togglePauseBtn.textContent = 'Pause';
     togglePauseBtn.disabled = true;
+    // Stop all sounds on reset
+    ['rain-sound', 'ocean-sound'].forEach(soundId => {
+        const audio = document.getElementById(`${soundId}-audio`);
+        const button = document.getElementById(soundId);
+        if (audio && !audio.paused) {
+            audio.pause();
+            button.classList.remove('active');
+            button.textContent = `${soundId.replace('-sound', '').replace(/^\w/, c => c.toUpperCase())} (Off)`;
+            console.log(`${soundId} paused on reset.`);
+        }
+    });
 }
 
 function loadHistory() {
@@ -136,8 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const togglePauseBtn = document.getElementById('toggle-pause');
     const resetBtn = document.getElementById('reset-timer');
     const durationInput = document.getElementById('duration');
-    if (!startBtn || !togglePauseBtn || !resetBtn || !durationInput) {
-        console.error('Mindfulness elements not found:', { startBtn, togglePauseBtn, resetBtn, durationInput });
+    const rainBtn = document.getElementById('rain-sound');
+    const oceanBtn = document.getElementById('ocean-sound');
+    if (!startBtn || !togglePauseBtn || !resetBtn || !durationInput || !rainBtn || !oceanBtn) {
+        console.error('Mindfulness elements not found:', { startBtn, togglePauseBtn, resetBtn, durationInput, rainBtn, oceanBtn });
         alert('Error: Page components missing. Please check file paths and refresh.');
         return;
     }
@@ -168,5 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Duration changed to:', duration);
         }
     });
+    rainBtn.addEventListener('click', () => toggleSound('rain-sound'));
+    oceanBtn.addEventListener('click', () => toggleSound('ocean-sound'));
     console.log('Initialization complete. Ready for use.');
 });

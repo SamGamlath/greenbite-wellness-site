@@ -53,6 +53,8 @@
 }
 .duration-group {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.5rem;
 }
@@ -67,14 +69,18 @@
     border-radius: 4px;
     font-size: 1rem;
     width: 80px;
+    text-align: center;
 }
 .button-group {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 0.5rem;
     justify-content: center;
 }
 .button-group button {
-    padding: 0.75rem 1.5rem;
+    flex: 1;
+    padding: 0.75rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -99,6 +105,40 @@
     margin: 0.5rem 0;
     font-family: 'Roboto', sans-serif;
     display: inline-block;
+}
+.sounds {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+.sounds h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: #4CAF50;
+    margin-bottom: 0.5rem;
+}
+.sound-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.sound-buttons button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.sound-buttons button:hover {
+    background: #388E3C;
+    transform: scale(1.05);
+}
+.sound-buttons button.active {
+    background: #2E7D32;
 }
 .session-history {
     margin-top: 2rem;
@@ -130,19 +170,17 @@
         height: 150px;
     }
     .duration-group {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.3rem;
     }
     .timer-controls input {
-        width: 100%;
-        max-width: 150px;
+        width: 60px;
     }
-    .button-group {
-        flex-direction: column;
-    }
-    .button-group button {
-        width: 100%;
-        max-width: 200px;
+    .button-group button, .sound-buttons button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        max-width: 100px;
     }
     #breath-text {
         font-size: 1rem;
@@ -165,11 +203,12 @@
     .timer-controls input {
         font-size: 0.9rem;
         padding: 0.4rem;
+        width: 50px;
     }
-    .button-group button {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-        max-width: 150px;
+    .button-group button, .sound-buttons button {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+        max-width: 80px;
     }
     #timer-display {
         font-size: 1.2rem;
@@ -188,13 +227,12 @@
     }
     .timer-controls input {
         font-size: 0.8rem;
-        width: 100%;
-        max-width: 120px;
+        width: 45px;
     }
-    .button-group button {
-        padding: 0.4rem;
-        font-size: 0.8rem;
-        max-width: 120px;
+    .button-group button, .sound-buttons button {
+        padding: 0.3rem;
+        font-size: 0.7rem;
+        max-width: 70px;
     }
     #breath-text {
         font-size: 0.9rem;
