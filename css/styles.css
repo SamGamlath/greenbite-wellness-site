@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #333; }
 header, footer { background: #4CAF50; color: white; padding: 1rem; }
-.logo { font-family: 'Open Sans', sans-serif; font-size: 1.5rem; }
+
 nav { display: flex; justify-content: space-between; align-items: center; }
 .nav-links { display: flex; list-style: none; }
 .nav-links li { margin: 0 1rem; }
@@ -21,11 +21,165 @@ footer button:hover { background: #1976D2; transition: background 0.3s; }
     .nav-links.active { display: flex; }
     .hamburger { display: block; }
 }
-.hero { background: url('assets/images/hero1.jpg') center/cover no-repeat; height: 50vh; display: flex; justify-content: center; align-items: center; }
-.hero h1 { font-size: 2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-.tips { text-align: center; padding: 2rem; }
-.tips p { font-size: 1.2rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
-.tips p.visible { opacity: 1; transform: translateY(0); }
+
+
+.hero {
+    background: url('../assets/images/hero1.jpg') center/cover no-repeat;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+.hero h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: opacity 0.5s ease;
+}
+.tips {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    margin: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.tips h2 {
+    font-family: 'Open Sans', sans-serif;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+.tips p {
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.tips p.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@media (max-width: 768px) {
+    .hero h1 { font-size: 1.8rem; }
+    .tips { margin: 1rem 0.5rem; }
+}
+
+
+
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+.footer-links a {
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: #2196F3;
+}
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+.footer-social a {
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+.footer-social a:hover {
+    transform: scale(1.2);
+}
+.footer-content form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.footer-content form.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.footer-content input, .footer-content button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.footer-content input {
+    flex: 1;
+    background: #fff;
+    color: #333;
+}
+.footer-content button {
+    background: #2196F3;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.footer-content button:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+.footer-credit {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 1rem 0.5rem;
+    }
+    .footer-content form {
+        flex-direction: column;
+    }
+    .footer-content input, .footer-content button {
+        width: 100%;
+    }
+}
+
+.logo img {
+    display: block;
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.logo img:hover {
+    transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    .logo img {
+        width: 120px;
+        height: 40px;
+    }
+}
 
 .recipes .controls { display: flex; gap: 1rem; margin-bottom: 1rem; }
 .recipes input, .recipes select { padding: 0.5rem; }

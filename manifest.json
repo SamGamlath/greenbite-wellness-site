@@ -1,0 +1,15 @@
+{
+    "short_name": "GreenBite",
+    "name": "GreenBite Wellness",
+    "icons": [
+        {
+            "src": "/assets/images/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#4CAF50",
+    "background_color": "#ffffff"
+}
