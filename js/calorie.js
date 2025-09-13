@@ -20,34 +20,77 @@ function saveToLocal(key, value) {
     localStorage.setItem(key, JSON.stringify(data));
 }
 
-document.getElementById('calorie-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const age = parseInt(document.getElementById('age').value);
-    const gender = document.getElementById('gender').value;
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    const activity = parseFloat(document.getElementById('activity').value);
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Calorie Calculator page loaded. Initializing...');
+    const calorieForm = document.getElementById('calorie-form');
+    const results = document.getElementById('results');
+    const bmrSpan = document.getElementById('bmr');
+    const tdeeSpan = document.getElementById('tdee');
+    const bmrBar = document.getElementById('bmr-bar');
+    const tdeeBar = document.getElementById('tdee-bar');
+    const carbsBar = document.getElementById('carbs-bar');
+    const proteinBar = document.getElementById('protein-bar');
+    const fatBar = document.getElementById('fat-bar');
 
-    if (isNaN(age) || isNaN(weight) || isNaN(height) || !gender || !activity) {
-        alert('Please fill all fields with valid values.');
+    if (!calorieForm || !results || !bmrSpan || !tdeeSpan || !bmrBar || !tdeeBar || !carbsBar || !proteinBar || !fatBar) {
+        console.error('Calorie Calculator elements not found:', { calorieForm, results, bmrSpan, tdeeSpan, bmrBar, tdeeBar, carbsBar, proteinBar, fatBar });
+        alert('Error: Page components missing. Please refresh the page.');
         return;
     }
 
-    const bmr = calculateBMR(weight, height, age, gender);
-    const tdee = calculateTDEE(bmr, activity);
+    calorieForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log('Calorie form submitted.');
+        const age = parseInt(document.getElementById('age').value);
+        const gender = document.getElementById('gender').value;
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const activity = parseFloat(document.getElementById('activity').value);
 
-    // Display results
-    document.getElementById('bmr').textContent = Math.round(bmr);
-    document.getElementById('tdee').textContent = Math.round(tdee);
-    document.getElementById('results').style.display = 'block';
+        // Validation
+        if (isNaN(age) || isNaN(weight) || isNaN(height) || !gender || !activity) {
+            console.warn('Form validation failed: Invalid or missing values.');
+            alert('Please fill all fields with valid values.');
+            results.style.display = 'none';
+            return;
+        }
 
-    // Animate progress bars (scale to 3000 kcal max for visualization)
-    const bmrPercent = (bmr / 3000) * 100;
-    const tdeePercent = (tdee / 3000) * 100;
-    document.getElementById('bmr-bar').style.width = `${bmrPercent}%`;
-    document.getElementById('tdee-bar').style.width = `${tdeePercent}%`;
+        // Calculate BMR and TDEE
+        const bmr = calculateBMR(weight, height, age, gender);
+        const tdee = calculateTDEE(bmr, activity);
+        console.log('Calculated BMR:', bmr, 'TDEE:', tdee);
 
-    // Save to localStorage
-    saveToLocal('calorieData', { age, gender, weight, height, activity, bmr, tdee });
-    e.target.reset();
+        // Calculate Macronutrients
+        const carbsGrams = Math.round((tdee * 0.50) / 4);
+        const proteinGrams = Math.round((tdee * 0.20) / 4);
+        const fatGrams = Math.round((tdee * 0.30) / 9);
+        console.log('Calculated Macros:', { carbsGrams, proteinGrams, fatGrams });
+
+        // Display results
+        bmrSpan.textContent = Math.round(bmr);
+        tdeeSpan.textContent = Math.round(tdee);
+        const bmrPercent = (bmr / 3000) * 100;
+        const tdeePercent = (tdee / 3000) * 100;
+        bmrBar.style.width = `${bmrPercent}%`;
+        tdeeBar.style.width = `${tdeePercent}%`;
+        carbsBar.style.width = '50%';
+        carbsBar.textContent = `${carbsGrams} g`;
+        proteinBar.style.width = '20%';
+        proteinBar.textContent = `${proteinGrams} g`;
+        fatBar.style.width = '30%';
+        fatBar.textContent = `${fatGrams} g`;
+        results.style.display = 'block';
+
+        // Save to localStorage
+        try {
+            saveToLocal('calorieData', { age, gender, weight, height, activity, bmr, tdee, carbsGrams, proteinGrams, fatGrams, timestamp: new Date().toISOString() });
+            console.log('Calculation saved:', { age, gender, weight, height, activity, bmr, tdee, carbsGrams, proteinGrams, fatGrams });
+        } catch (e) {
+            console.error('Error saving calculation:', e);
+        }
+
+        e.target.reset();
+    });
+
+    console.log('Initialization complete. Ready for use.');
 });

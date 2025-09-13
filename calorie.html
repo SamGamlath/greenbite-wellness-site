@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenBite - Calorie Calculator</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calorie.css">
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
@@ -59,17 +60,32 @@
                 
                 <button type="submit">Calculate</button>
             </form>
-            <div class="results" id="results" style="display: none;">
+            <div class="results" id="results" style="display: none;" aria-live="polite">
                 <h3>Your Results</h3>
-                <p>BMR: <span id="bmr"></span> kcal/day</p>
+                <p>BMR: <span id="bmr">0</span> kcal/day</p>
                 <div class="progress-bar">
                     <label>BMR</label>
                     <div class="bar"><div id="bmr-bar" style="width: 0;"></div></div>
                 </div>
-                <p>TDEE: <span id="tdee"></span> kcal/day</p>
+                <p>TDEE: <span id="tdee">0</span> kcal/day</p>
                 <div class="progress-bar">
                     <label>TDEE</label>
                     <div class="bar"><div id="tdee-bar" style="width: 0;"></div></div>
+                </div>
+                <div class="macros">
+                    <h4>Macronutrient Breakdown</h4>
+                    <div class="progress-bar">
+                        <label>Carbohydrates (50%):</label>
+                        <div class="bar"><div id="carbs-bar" style="width: 0;">0 g</div></div>
+                    </div>
+                    <div class="progress-bar">
+                        <label>Protein (20%):</label>
+                        <div class="bar"><div id="protein-bar" style="width: 0;">0 g</div></div>
+                    </div>
+                    <div class="progress-bar">
+                        <label>Fat (30%):</label>
+                        <div class="bar"><div id="fat-bar" style="width: 0;">0 g</div></div>
+                    </div>
                 </div>
             </div>
         </section>
