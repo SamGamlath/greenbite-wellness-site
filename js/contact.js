@@ -4,22 +4,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedback = document.getElementById('form-feedback');
     const historyList = document.getElementById('history-list');
     const submissionHistory = document.getElementById('submission-history');
-    if (!contactForm || !feedback || !historyList || !submissionHistory) {
-        console.error('Contact form elements not found:', { contactForm, feedback, historyList, submissionHistory });
-        alert('Error: Form components missing. Please refresh the page.');
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    if (!contactForm || !feedback || !historyList || !submissionHistory || !faqQuestions) {
+        console.error('Contact page elements not found:', { contactForm, feedback, historyList, submissionHistory, faqQuestions });
+        alert('Error: Page components missing. Please refresh the page.');
         return;
     }
 
     function loadSubmissionHistory() {
-        console.log('Loading submission history from localStorage.');
-        try {
-            const submissions = JSON.parse(localStorage.getItem('contactSubmissions')) || [];
-            historyList.innerHTML = submissions.map(s => `<li>${s.name} (${s.email}) on ${new Date(s.timestamp).toLocaleString()}</li>`).join('');
-            submissionHistory.style.display = submissions.length ? 'block' : 'none';
-            console.log('Submission history loaded:', submissions);
-        } catch (e) {
-            console.error('Error loading submission history:', e);
+        console.log('Skipping submission history rendering for public users.');
+        // No UI updates, but localStorage can still be used for saving submissions
+    }
+
+    function toggleFAQ(e) {
+        console.log('FAQ question clicked:', e.target.textContent);
+        const button = e.target;
+        const answerId = button.getAttribute('aria-controls');
+        const answer = document.getElementById(answerId);
+        if (!answer) {
+            console.error('FAQ answer not found for ID:', answerId);
+            return;
         }
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !isExpanded);
+        answer.classList.toggle('active');
+        console.log(`FAQ ${answerId} ${isExpanded ? 'collapsed' : 'expanded'}`);
     }
 
     loadSubmissionHistory();
@@ -70,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             feedback.classList.add('error');
             feedback.classList.remove('success');
         }
+    });
+
+    faqQuestions.forEach(button => {
+        button.addEventListener('click', toggleFAQ);
     });
 
     console.log('Initialization complete. Ready for use.');
